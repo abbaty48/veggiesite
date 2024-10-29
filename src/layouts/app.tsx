@@ -1,4 +1,5 @@
 import Hero from "./sections/hero/hero"
+import Specials from "./sections/specials/specials"
 import Jumbotron from "./sections/jumbotron/jumbotron"
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
         <main>
             <Hero />
             <Jumbotron />
+            <Specials />
         </main>
     )
 }

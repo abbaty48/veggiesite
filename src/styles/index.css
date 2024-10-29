@@ -11,6 +11,7 @@ html {
 body {
     font-size: 1.5em;
     min-height: 100dvh;
+    color: hsl(0, 0%, 24%);
     background: hsl(0, 0%, 100%);
 }
 

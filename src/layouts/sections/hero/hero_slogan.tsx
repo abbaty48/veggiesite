@@ -7,26 +7,20 @@ const Article = styled.article`
     position: absolute;
     transform: translate(-50%, -50%);
 
+    @media screen and (min-width: 60em){
+            & {
+                left: auto;
+                right: 30%;
+                transform: translate(50%, -50%)
+            }
+    }
+
     &::after {
         content: '';
         width: 100%;
         position: absolute;
         padding-bottom: 5em;
         background: url(${f002}) 50% 10px / 80% no-repeat;
-    }
-
-    @media screen and (min-width: 60em){
-        & {
-            left: auto;
-            right: 20%;
-            transform: translateX(20%);
-            &::after {
-                left: 50%;
-                width: 60%;
-                transform: translateX(-50%);
-                background: url(${f002}) 50% 20px / 80% no-repeat;
-            }
-        }
     }
     p {
         position: relative;

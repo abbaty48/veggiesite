@@ -11,10 +11,10 @@ const Section = styled.section`
 `
 
 const Container = styled(Center)`
-    gap: 4em;
+    gap: 4rem;
     display: grid;
+    padding: 5rem 0;
     align-items: center;
-    padding: 2em .50em;
     grid-template-columns: repeat(auto-fit, minmax(min(80%, 20em), 1fr));
 
     > figure {
@@ -23,7 +23,8 @@ const Container = styled(Center)`
         flex-flow: column;
         align-items: center;
         figcaption {font-size: 1.8em; font-weight: bold; margin: 1em auto;}
-        article p {font-size: 1.6rem; font-weight: light;}
+        article p {font-size: 1.6rem; font-weight: light; text-align: justify;}
+        img {width: 100%; object-fit: contain; object-position: center; height: 100px;}
     }
 `
 
