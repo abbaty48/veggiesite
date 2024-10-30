@@ -88,11 +88,11 @@ export default function Contact() {
             <Form>
                 <FormCaption>Contact Form</FormCaption>
                 <FieldGroup>
-                    <FieldInput placeholder="Your Name." required />
-                    <FieldInput placeholder="Your Email." type="email" required />
+                    <FieldInput placeholder="Your Name." tabIndex={0} required />
+                    <FieldInput placeholder="Your Email." type="email" tabIndex={1} required />
                 </FieldGroup>
-                <TextArea placeholder="Your Message." as={'textarea'} cols={10} rows={4} required />
-                <Submit>Send</Submit>
+                <TextArea placeholder="Your Message." tabIndex={2} as={'textarea'} cols={10} rows={4} required />
+                <Submit tabIndex={3}>Send</Submit>
             </Form>
         </ContactWrapper>
     </Footer>)

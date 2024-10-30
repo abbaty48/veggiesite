@@ -63,9 +63,9 @@ export default function Us() {
             <Article>
                 <Header>About us</Header>
                 <Description>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</Description>
-                <Signature src={f013} />
+                <Signature src={f013} alt={'Signature - alternative description here.'} loading={'lazy'}/>
             </Article>
-            <Feature src={f012} ref={ref0012}/>
+            <Feature src={f012} ref={ref0012} alt={'About - alternative description here.'} loading={'lazy'}/>
         </Container>
     </Section>)
 }

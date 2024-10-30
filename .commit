@@ -1,2 +1,0 @@
--- Refactor jumbotron card titles to uppercase
--- Configure Absolute path lieu to relative paths ../, this is configure in vite.config.ts and tsconfig.json.ts

@@ -62,8 +62,9 @@ const Figure = styled.figure<{ $col: number, $row: number }>`
 
 const Image = styled.img`
     flex: 1;
+    height: auto;
     width: 100%;
-    height: 220px;
+    /* height: 220px; */
     object-fit: cover;
     object-position: center;
 `
@@ -100,7 +101,6 @@ const Caption = styled.h1`
 
 const Description = styled.p`
     font-weight: lighter;
-    /* line-height: 1.8rem; */
     font-size: 100%;
 `
 
@@ -115,7 +115,7 @@ export default function Specials() {
         <Header>This Month Specials</Header>
         <GridContainer>
             <Figure $col={1} $row={1}>
-                <Image src={f006} />
+                <Image src={f006} alt={'Greens Fava - alternative description here.'} loading={'lazy'} />
                 <FigContent>
                     <Caption>Greens Fava</Caption>
                     <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
@@ -123,7 +123,7 @@ export default function Specials() {
                 </FigContent>
             </Figure>
             <Figure $col={2} $row={1}>
-                <Image src={f007} />
+                <Image src={f007} alt={'Celery Quandong - alternative description here.'} loading={'lazy'} />
                 <FigContent>
                     <Caption>Celery Quandong</Caption>
                     <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
@@ -131,7 +131,7 @@ export default function Specials() {
                 </FigContent>
             </Figure>
             <Figure $col={3} $row={1}>
-                <Image src={f008} />
+                <Image src={f008} alt={'Pea Horseradish - alternative description here.'} loading={'lazy'}/>
                 <FigContent>
                     <Caption>Pea Horseradish</Caption>
                     <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
@@ -144,7 +144,7 @@ export default function Specials() {
                     <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
                     <Price>7$</Price>
                 </FigContent>
-                <Image src={f009} />
+                <Image src={f009} alt={'Soko Ridicciho - alternative description here.'} loading={'lazy'}/>
             </Figure>
             <Figure $col={2} $row={2}>
                 <FigContent>
@@ -152,7 +152,7 @@ export default function Specials() {
                     <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
                     <Price>3$</Price>
                 </FigContent>
-                <Image src={f010} />
+                <Image src={f010} alt={'Tiger Nut - alternative description here.'} loading={'lazy'}/>
             </Figure>
             <Figure $col={3} $row={2}>
                 <FigContent>
@@ -160,7 +160,7 @@ export default function Specials() {
                     <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
                     <Price>5$</Price>
                 </FigContent>
-                <Image src={f011} />
+                <Image src={f011} alt={'Yellow Sweet - alternative description here.'} loading={'lazy'}/>
             </Figure>
         </GridContainer>
     </Section>

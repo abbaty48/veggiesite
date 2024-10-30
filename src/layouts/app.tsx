@@ -7,14 +7,14 @@ import Jumbotron from "@sections/jumbotron/jumbotron"
 
 function App() {
     return (
-        <main>
+        <>
             <Hero />
             <Jumbotron />
             <Specials />
             <Us />
             <Recipes />
             <Contact />
-        </main>
+        </>
     )
 }
 

@@ -25,15 +25,15 @@ const Container = styled(Center)`
         align-items: center;
         figcaption {font-size: 1.8rem; font-weight: bold; margin: 1rem auto; text-transform: uppercase;}
         article p {font-size: 1.6rem; font-weight: lighter; text-align: justify;}
-        img {width: 100%; object-fit: contain; object-position: center; height: 100px; scale: .5}
+        img {width: 100%; object-fit: contain; object-position: center; height: 100px; scale: .5; }
     }
 `
 
-const Card = forwardRef(function ({ src, caption, children }: PropsWithChildren & {
-    src: string, caption: string
+const Card = forwardRef(function ({ src, caption, alt, children }: PropsWithChildren & {
+    src: string, caption: string, alt: string
 }, ref: Ref<HTMLElement>) {
     return (<figure ref={ref}>
-        <img src={src} />
+        <img src={src} alt={alt} sizes='auto' loading='lazy'  />
         <figcaption>{caption}</figcaption>
         <article><p>{children}</p></article>
     </figure>)
@@ -59,13 +59,13 @@ export default function Jumbotron() {
 
     return (<Section>
         <Container>
-            <Card src={f003} caption={'Turnip Greens'} ref={ref0004}>
+            <Card src={f003} caption={'Turnip Greens'} ref={ref0004} alt={'Turnip Green - alternative description here.'}>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora distinctio consequuntur officia nemo reprehenderit ullam veniam magni quos libero similique est sunt ducimus quia iste, neque harum doloremque voluptatibus mollitia?
             </Card>
-            <Card src={f004} caption={'BeetRoot Water'} ref={ref0005}>
+            <Card src={f004} caption={'BeetRoot Water'} ref={ref0005} alt={'BeetRoot Water - alternative description here.'}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quidem corrupti esse vel commodi dicta corporis maxime molestiae unde laudantium quam minus animi, quis, aliquid mollitia, earum excepturi alias officia.
             </Card>
-            <Card src={f005} caption={'Get Social'} ref={ref0006}>
+            <Card src={f005} caption={'Get Social'} ref={ref0006} alt={'Get Social - alternative description here.'}>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam obcaecati voluptates corporis amet vitae, commodi maxime minima, id architecto libero eligendi, hic consequatur ratione nam odit veniam impedit soluta tenetur.
             </Card>
         </Container>
