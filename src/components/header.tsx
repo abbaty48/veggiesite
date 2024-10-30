@@ -4,7 +4,7 @@ import f002 from '../assets/features/f002.webp'
 export const Header = styled.h3`
     margin: 2em auto;
     text-align: center;
-    font-weight: 200;
+    font-weight: 100;
     position: relative;
     font-size: 4rem;
     margin-top: 0;

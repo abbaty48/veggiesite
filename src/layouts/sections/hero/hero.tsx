@@ -1,12 +1,10 @@
 import Slogan from './hero_slogan'
 import styled from "styled-components"
+import f001 from '@features/f001.webp'
 import Navigation from "./hero_navigation"
-import f001 from '../../../assets/features/f001.webp'
 
 const Header = styled.header`
-    background: #fff url(${f001}) no-repeat;
-    background-position: 100% 100%;
-    background-size: cover;
+    background: #fff url(${f001}) 100%/ cover no-repeat fixed;
     position: relative;
     height: 70vmin;
 

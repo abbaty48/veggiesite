@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
 import styled, { css } from "styled-components";
-import f002 from '../../../assets/features/f002.webp';
+import { useCallback, useState } from "react";
+import f002 from '@features/f002.webp';
 
 const Nav = styled.nav`
     position: relative;
@@ -120,11 +120,14 @@ const Menu = styled.menu<{ $isOpen: boolean }>`
 
 export default function Navigation() {
     const [isOpen, setIsOpen] = useState(false)
-    const handleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen])
+    const handleOpen = useCallback((evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        evt.preventDefault();
+        setIsOpen(!isOpen)
+    }, [isOpen])
 
     return (
         <Nav>
-            <Hamburger href="javascript:;" $isOpen={isOpen} onClick={handleOpen}><span></span><span></span><span></span></Hamburger>
+            <Hamburger href="#" $isOpen={isOpen} onClick={handleOpen}><span></span><span></span><span></span></Hamburger>
             <Menu $isOpen={isOpen}>
                 <a href="#" className={'active'}>Home</a>
                 <a href="#specials">Specials</a>

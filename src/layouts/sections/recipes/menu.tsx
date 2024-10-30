@@ -1,7 +1,7 @@
-import MenuContent from "./menuContent";
-import { PropsWithChildren } from "react";
-import { MenuItem } from "./menuItem"
 import styled from "styled-components"
+import { PropsWithChildren } from "react"
+import { MenuItem } from "@sections/recipes/menuItem"
+import MenuContent from "@sections/recipes/menuContent"
 
 const Wrapper = styled.div``
 const MenuHeader = styled.menu`

@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import Center from "../../../components/center";
-import { Header } from "../../../components/header";
-import f014 from "../../../assets/features/f014.webp";
+import f014 from "@features/f014.webp";
+import Center from "@components/center";
+import { Header } from "@components/header";
 
 const Footer = styled.footer`
     object-fit: cover;

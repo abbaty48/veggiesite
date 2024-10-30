@@ -1,7 +1,7 @@
-import { Header } from '../../../components/header'
-import Center from "../../../components/center"
+import { Header } from '@components/header'
+import Menu from "@sections/recipes/menu"
+import Center from "@components/center"
 import styled from "styled-components"
-import Menu from "./menu"
 
 const Section = styled.section`
     padding: 4rem 0;

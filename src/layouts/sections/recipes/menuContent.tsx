@@ -43,7 +43,7 @@ const _items: TRecipe[] = [
 const __items = Array.from({ length: 20 }, () => ({ ..._items[Math.floor(Math.random() * _items.length)] }))
 
 const Recipes = memo(function ({ items }: { items: TRecipe[] }) {
-    return items.map(({ name, price, ingredients }) => <DefinitionList>
+    return items.map(({ name, price, ingredients }, index) => <DefinitionList key={index}>
         <DefinitionTable>{name} <span>{price}$</span> </DefinitionTable>
         <DefinitionData>{ingredients.join(',')}</DefinitionData>
     </DefinitionList>

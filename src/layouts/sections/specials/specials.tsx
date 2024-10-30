@@ -1,12 +1,12 @@
-import f002 from '../../../assets/features/f002.webp'
-import f006 from '../../../assets/features/f006.webp'
-import f007 from '../../../assets/features/f007.webp'
-import f008 from '../../../assets/features/f008.webp'
-import f009 from '../../../assets/features/f009.webp'
-import f010 from '../../../assets/features/f010.webp'
-import f011 from '../../../assets/features/f011.webp'
-import Center from "../../../components/center"
+import Center from "@components/center"
 import styled from "styled-components"
+import f002 from '@features/f002.webp'
+import f006 from '@features/f006.webp'
+import f007 from '@features/f007.webp'
+import f008 from '@features/f008.webp'
+import f009 from '@features/f009.webp'
+import f010 from '@features/f010.webp'
+import f011 from '@features/f011.webp'
 
 const Section = styled.section`
     padding: 5em 0;

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import f002 from '../../../assets/features/f002.webp'
+import f002 from '@features/f002.webp'
 
 const Article = styled.article`
     top: 50%;

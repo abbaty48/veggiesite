@@ -4,15 +4,17 @@
 
 html {
     font-size: 62.5%;
-    font-weight: 400;
+    font-weight: lighter;
     font-family: Merriweather, sans-serif;
 }
 
 body {
     font-size: 1.5em;
     min-height: 100dvh;
-    color: hsl(0, 0%, 24%);
+    letter-spacing: 0.05rem;
+    color: hsl(0, 0%, 20%);
     background: hsl(0, 0%, 100%);
+    text-shadow: .1rem .1rem .1rem #0001;
 }
 
 .merriweather-light {

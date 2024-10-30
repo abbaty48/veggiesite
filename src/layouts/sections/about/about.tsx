@@ -1,8 +1,10 @@
+import { useIntersectionObserver } from "@hooks/useIntersectionObserver"
+import { Header } from "@components/header"
+import { useRef, useCallback } from "react"
+import Center from "@components/center"
 import styled from "styled-components"
-import Center from "../../../components/center"
-import f012 from '../../../assets/features/f012.webp'
-import f013 from '../../../assets/features/f013.webp'
-import f002 from '../../../assets/features/f002.webp'
+import f012 from '@features/f012.webp'
+import f013 from '@features/f013.webp'
 
 const Section = styled.section`
     padding: 8em 0;
@@ -20,28 +22,7 @@ const Article = styled.article`
     position: relative;
 `
 
-const Header = styled.h2`
-    font-size: 4rem;
-    position: relative;
-    font-weight: 300;
-    line-height: 5.5rem;
-    margin: 8rem auto;
-    margin-top: 0;
-
-    &::after {
-        content: '';
-        left: 50%;
-        width: 50%;
-        display: block;
-        position: absolute;
-        padding-bottom: 8rem;
-        transform: translateX(-50%);
-        background: url(${f002}) 50% 10px / 50% no-repeat;
-    }
-`
-
 const Description = styled.p`
-    font-weight: 300;
     line-height: 5.4rem;
     font-size: clamp(1.5rem, 3vw, 3.5rem);
 `
@@ -64,6 +45,19 @@ const Feature = styled.img`
 `
 
 export default function Us() {
+    const ref0012 = useRef<HTMLElement | null>(null)
+    useIntersectionObserver([ref0012], () => {
+        animate([ref0012])
+    })
+
+    const animate = useCallback((refs: React.MutableRefObject<HTMLElement | null>[]) => {
+        refs.forEach(ref => {
+            ref.current?.animate([
+                { transform: 'translateY(0px)', opacity: '0' },
+                { transform: 'translateY(-30px)', opacity: 1 },
+            ], { duration: 500, fill: 'both' })
+        })
+    }, [])
     return (<Section id={'us'}>
         <Container>
             <Article>
@@ -71,7 +65,7 @@ export default function Us() {
                 <Description>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</Description>
                 <Signature src={f013} />
             </Article>
-            <Feature src={f012} />
+            <Feature src={f012} ref={ref0012}/>
         </Container>
     </Section>)
 }
