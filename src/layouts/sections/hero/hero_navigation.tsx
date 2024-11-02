@@ -131,7 +131,7 @@ export default function Navigation() {
             <Menu $isOpen={isOpen}>
                 <a href="#" className={'active'}>Home</a>
                 <a href="#specials">Specials</a>
-                <a href="#recipes">Recipes</a>
+                <a href="#veggies">Veggies</a>
                 <a href="#us">About</a>
                 <a href="#contact">Contact</a>
             </Menu>

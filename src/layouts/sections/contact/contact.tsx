@@ -72,7 +72,7 @@ const Submit = styled.button.attrs({ type: 'submit' })`
 export default function Contact() {
     return (<Footer id={'contact'}>
         <ContactWrapper>
-            <ContactHeader>Contact</ContactHeader>
+            <ContactHeader as={'h5'}>Contact</ContactHeader>
             <Addresses>
                 <Address>
                     <h4>Veggie</h4>

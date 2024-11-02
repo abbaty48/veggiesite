@@ -1,5 +1,5 @@
-import { useIntersectionObserver } from '@hooks/useIntersectionObserver'
 import { forwardRef, PropsWithChildren, Ref, useCallback, useRef } from 'react'
+import { useIntersectionObserver } from '@hooks/useIntersectionObserver'
 import f003 from '@features/f003.webp'
 import f004 from '@features/f004.webp'
 import f005 from '@features/f005.webp'
@@ -29,11 +29,11 @@ const Container = styled(Center)`
     }
 `
 
-const Card = forwardRef(function ({ src, caption, children }: PropsWithChildren & {
-    src: string, caption: string
+const Card = forwardRef(function ({ src, caption, alt, children }: PropsWithChildren & {
+    src: string, caption: string, alt: string
 }, ref: Ref<HTMLElement>) {
     return (<figure ref={ref}>
-        <img src={src} />
+        <img src={src} alt={alt} />
         <figcaption>{caption}</figcaption>
         <article><p>{children}</p></article>
     </figure>)
@@ -44,7 +44,7 @@ export default function Jumbotron() {
     const ref0005 = useRef<HTMLElement | null>(null)
     const ref0006 = useRef<HTMLElement | null>(null)
 
-    useIntersectionObserver([ref0004, ref0005, ref0006], () => {
+    useIntersectionObserver([ref0004, ref0005, ref0006], {}, () => {
         animate([ref0004, ref0005, ref0006])
     })
 
@@ -59,13 +59,13 @@ export default function Jumbotron() {
 
     return (<Section>
         <Container>
-            <Card src={f003} caption={'Turnip Greens'} ref={ref0004}>
+            <Card src={f003} caption={'Turnip Greens'} alt={'Turnip Green - alternative description here.'} ref={ref0004} >
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora distinctio consequuntur officia nemo reprehenderit ullam veniam magni quos libero similique est sunt ducimus quia iste, neque harum doloremque voluptatibus mollitia?
             </Card>
-            <Card src={f004} caption={'BeetRoot Water'} ref={ref0005}>
+            <Card src={f004} caption={'BeetRoot Water'} alt={'BeetRoot Water - alternative description here.'} ref={ref0005}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quidem corrupti esse vel commodi dicta corporis maxime molestiae unde laudantium quam minus animi, quis, aliquid mollitia, earum excepturi alias officia.
             </Card>
-            <Card src={f005} caption={'Get Social'} ref={ref0006}>
+            <Card src={f005} caption={'Get Social'} alt={'Get Social - alternative description here.'} ref={ref0006}>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam obcaecati voluptates corporis amet vitae, commodi maxime minima, id architecto libero eligendi, hic consequatur ratione nam odit veniam impedit soluta tenetur.
             </Card>
         </Container>

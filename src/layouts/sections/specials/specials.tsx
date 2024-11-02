@@ -1,12 +1,10 @@
+import { useIntersectionObserver } from "@hooks/useIntersectionObserver"
+import { Spinner } from "@components/spinner"
+import { useSpecials } from "@hooks/useData"
 import Center from "@components/center"
-import styled from "styled-components"
 import f002 from '@features/f002.webp'
-import f006 from '@features/f006.webp'
-import f007 from '@features/f007.webp'
-import f008 from '@features/f008.webp'
-import f009 from '@features/f009.webp'
-import f010 from '@features/f010.webp'
-import f011 from '@features/f011.webp'
+import { useMemo, useRef } from "react"
+import styled from "styled-components"
 
 const Section = styled.section`
     padding: 5em 0;
@@ -64,7 +62,10 @@ const Image = styled.img`
     flex: 1;
     width: 100%;
     height: 220px;
+    min-height: 100px;
+    min-width: 100px;
     object-fit: cover;
+    background: #f9f9f9;
     object-position: center;
 `
 
@@ -100,7 +101,6 @@ const Caption = styled.h1`
 
 const Description = styled.p`
     font-weight: lighter;
-    /* line-height: 1.8rem; */
     font-size: 100%;
 `
 
@@ -111,58 +111,40 @@ const Price = styled.p`
 `
 
 export default function Specials() {
-    return (<Section id={"specials"}>
+    const ref = useRef<HTMLElement | null>(null)
+    const isIntersected = useIntersectionObserver(ref)
+    const { isLoading, data } = useSpecials()
+
+    const SpecialVeggies = useMemo(() => {
+        let col = 1;
+        let row = 1;
+        return (
+            data && data.length && data.map(({ name, title, price, imageUrl }, i) => {
+                col = i % 3 === 0 ? 1 : col + 1;
+                row = i % 3 === 0 ? row + 1 : row;
+                return (
+                    <Figure key={i} $col={col} $row={row}>
+                        <Image src={imageUrl} alt={title} />
+                        <FigContent>
+                            <Caption>{name}</Caption>
+                            <Description>{title}</Description>
+                            <Price>{price}$</Price>
+                        </FigContent>
+                    </Figure>
+                )
+            }
+            )
+        )
+    }, [data, isLoading])
+
+    return (<Section id={"specials"} ref={ref}>
         <Header>This Month Specials</Header>
-        <GridContainer>
-            <Figure $col={1} $row={1}>
-                <Image src={f006} />
-                <FigContent>
-                    <Caption>Greens Fava</Caption>
-                    <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
-                    <Price>17$</Price>
-                </FigContent>
-            </Figure>
-            <Figure $col={2} $row={1}>
-                <Image src={f007} />
-                <FigContent>
-                    <Caption>Celery Quandong</Caption>
-                    <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
-                    <Price>30$</Price>
-                </FigContent>
-            </Figure>
-            <Figure $col={3} $row={1}>
-                <Image src={f008} />
-                <FigContent>
-                    <Caption>Pea Horseradish</Caption>
-                    <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
-                    <Price>25$</Price>
-                </FigContent>
-            </Figure>
-            <Figure $col={1} $row={2}>
-                <FigContent>
-                    <Caption>Soko Ridicciho</Caption>
-                    <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
-                    <Price>7$</Price>
-                </FigContent>
-                <Image src={f009} />
-            </Figure>
-            <Figure $col={2} $row={2}>
-                <FigContent>
-                    <Caption>Tiger Nut</Caption>
-                    <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
-                    <Price>3$</Price>
-                </FigContent>
-                <Image src={f010} />
-            </Figure>
-            <Figure $col={3} $row={2}>
-                <FigContent>
-                    <Caption>Yellow Sweet</Caption>
-                    <Description>Lorem Ipsum dolor sit Pallentesque vel enim a.</Description>
-                    <Price>5$</Price>
-                </FigContent>
-                <Image src={f011} />
-            </Figure>
-        </GridContainer>
+        {isLoading && <Spinner />}
+        {isIntersected &&
+            <GridContainer>
+                {SpecialVeggies}
+            </GridContainer>
+        }
     </Section>
     )
 }

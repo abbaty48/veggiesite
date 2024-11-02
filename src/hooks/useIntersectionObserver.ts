@@ -1,25 +1,42 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export function useIntersectionObserver(refs: React.MutableRefObject<HTMLElement | null>[],
-    whenIntersectCallback: CallableFunction ): void
-export function useIntersectionObserver(refs: React.MutableRefObject<HTMLElement | null>[],
-    whenIntersectCallback?: CallableFunction): void
-export function useIntersectionObserver(refs: React.MutableRefObject<HTMLElement | null>[],
-    whenIntersectCallback?: CallableFunction,
-    options?: IntersectionObserverInit,
-): void
+type TRef = React.MutableRefObject<HTMLElement | null>;
+type TCallback = CallableFunction;
+type TObserverInit = IntersectionObserverInit
+
+export function useIntersectionObserver(ref: TRef | TRef[], options?: TObserverInit, whenIntersectCallback?: TCallback): boolean
 {
+    const [isIntersected, setIsIntersected] = useState(false)
+
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
+        if ('length' in ref) {
+            const observer = new IntersectionObserver((entries) => {
+                if(entries.some(entry => entry.isIntersecting)) {
                     whenIntersectCallback?.();
                 }
+            }, options)
+            ref.forEach(ref => {
+                if (observer && ref.current) { observer.observe(ref.current) }
             })
-        })
-        refs.forEach(ref => {
+            return () => {
+                ref.forEach(ref => {
+                    if (observer && ref.current) { observer.unobserve(ref.current) }
+                })
+            }
+        } else {
+            const observer = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsIntersected(true)
+                    whenIntersectCallback?.();
+                }
+            }, options)
             if (observer && ref.current) { observer.observe(ref.current) }
-        })
-        return () => { observer.disconnect() }
-    }, [refs, options])
+            return () => {
+                setIsIntersected(false)
+                if (observer && ref.current) { observer.unobserve(ref.current) }
+            }
+        }
+    }, [ref, options])
+
+    return isIntersected
 }

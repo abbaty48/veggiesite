@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import f002 from '../assets/features/f002.webp'
 
-export const Header = styled.h3`
+export const Header = styled.h2`
     margin: 2em auto;
     text-align: center;
     font-weight: 100;

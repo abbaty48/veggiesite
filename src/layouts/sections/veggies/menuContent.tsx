@@ -1,5 +1,9 @@
 import { memo } from "react"
 import styled from "styled-components"
+import { TVeggie } from '@libs/libs.types'
+import { useMenu } from "@hooks/useMenu"
+import { useVeggies } from "@hooks/useData"
+import { Spinner } from "@components/spinner"
 
 const Wrapper = styled.article`
     gap: 1em;
@@ -33,17 +37,8 @@ const DefinitionData = styled.dd`
     word-wrap: break-word;
 `
 
-type TRecipe = { name: string, price: number, ingredients: string[] }
-const _items: TRecipe[] = [
-    { name: 'SMOKED RICOTTA TERRINE', price: 12, ingredients: ['ricotta', 'shallots', 'cheddar', 'capers'] },
-    { name: 'SAMPHIRE FRITTERS WITH FENNEL CEVICHE', price: 13, ingredients: ['fresh', 'samphire', 'plain', 'flour', 'cornflower', 'eggs', 'fennel'] },
-    { name: 'PAN FRIED COURGETTE FLOWERS', price: 17, ingredients: ['courgette', 'flowers', 'goats', 'cheese', 'red onion', 'pine nuts'] },
-]
-
-const __items = Array.from({ length: 20 }, () => ({ ..._items[Math.floor(Math.random() * _items.length)] }))
-
-const Recipes = memo(function ({ items }: { items: TRecipe[] }) {
-    return items.map(({ name, price, ingredients }, index) => <DefinitionList key={index}>
+const Veggies = memo(function ({ items }: { items: TVeggie[] }) {
+    return items.map(({ name, price, ingredients, title, imageUrl }, index) => <DefinitionList key={index}>
         <DefinitionTable>{name} <span>{price}$</span> </DefinitionTable>
         <DefinitionData>{ingredients.join(',')}</DefinitionData>
     </DefinitionList>
@@ -51,7 +46,14 @@ const Recipes = memo(function ({ items }: { items: TRecipe[] }) {
 })
 
 export default function MenuContent() {
-    return (<Wrapper>
-        <Recipes items={__items} />
-    </Wrapper>)
+    const { selectMenu } = useMenu()
+    const { isLoading, isError, data } = useVeggies(selectMenu)
+    return (
+        <>
+            {isLoading && <Spinner />}
+            {isError && 'Could not load data at the moment.'}
+            {data && !data.length && `No available data for '${selectMenu}' yet.`}
+            {data && data.length && <Wrapper><Veggies items={data} /></Wrapper>}
+        </>
+    )
 }

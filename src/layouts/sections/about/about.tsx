@@ -40,13 +40,13 @@ const Feature = styled.img`
     object-fit: cover;
 
     @media screen and (min-width: 60rem) {
-        width: 50%;
+        width: 60%;
     }
 `
 
 export default function Us() {
     const ref0012 = useRef<HTMLElement | null>(null)
-    useIntersectionObserver([ref0012], () => {
+    useIntersectionObserver([ref0012], {}, () => {
         animate([ref0012])
     })
 
@@ -61,11 +61,11 @@ export default function Us() {
     return (<Section id={'us'}>
         <Container>
             <Article>
-                <Header>About us</Header>
+                <Header as={'h3'}>About us</Header>
                 <Description>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</Description>
-                <Signature src={f013} />
+                <Signature src={f013} alt={'Ceo Signature'} />
             </Article>
-            <Feature src={f012} ref={ref0012}/>
+            <Feature src={f012} ref={ref0012} alt={'Feature image'} />
         </Container>
     </Section>)
 }

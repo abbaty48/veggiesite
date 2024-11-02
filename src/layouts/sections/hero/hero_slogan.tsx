@@ -17,12 +17,12 @@ const Article = styled.article`
 
     &::after {
         content: '';
-        width: 100%;
+        width: 70%;
         position: absolute;
         padding-bottom: 5em;
-        background: url(${f002}) 50% 10px / 80% no-repeat;
+        background: url(${f002}) 100% 10px / 60% no-repeat;
     }
-    p {
+    h1 {
         position: relative;
         text-align: center;
 
@@ -38,10 +38,10 @@ const Article = styled.article`
 export default function HeroSlogan() {
     return (
         <Article>
-            <p>
-                Veggies es bonus vobis, <br />
-                proinde vos postulo essum.
-            </p>
+            <h1>
+                Veggies, home of easy and healthy <br />
+                meals recipes for delightful.
+            </h1>
         </Article>
     )
 }

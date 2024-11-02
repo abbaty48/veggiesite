@@ -1,3 +1,4 @@
+import { useMenu } from "@hooks/useMenu"
 import { PropsWithChildren } from "react"
 import styled from "styled-components"
 
@@ -13,9 +14,12 @@ const Button = styled.button<{ $isActive?: boolean }>`
     background: transparent;
     pointer-events: ${props => props.$isActive && 'none'};
     border: ${props => props.$isActive && '.1rem solid #000'};
+    color: ${props => props.$isActive && 'orange'};
     &:hover {color: orange;}
 `
 
 export function MenuItem({ children }: PropsWithChildren) {
-    return <Button>{children}</Button>
+    const { selectMenu, setSelectedMenu } = useMenu()
+    const isSelected = selectMenu === children;
+    return <Button $isActive={isSelected} onClick={() => setSelectedMenu(children as string)}>{children}</Button>
 }

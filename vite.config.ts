@@ -7,8 +7,11 @@ export default defineConfig({
   resolve: {
     alias: {
         "@src": "/src",
+        "@libs": "/src/libs",
         "@hooks": "/src/hooks",
+        "@states": "/src/states",
         "@assets": "/src/assets",
+        "@mocks": "/src/mocks",
         "@layouts": "/src/layouts",
         "@features": "/src/assets/features",
         "@sections": "/src/layouts/sections",
