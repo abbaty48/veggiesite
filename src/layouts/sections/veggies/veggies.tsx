@@ -7,6 +7,7 @@ import { useRef } from 'react'
 
 const Section = styled.section`
     padding: 4rem 0;
+    min-height: 30rem;
 `
 
 export default function Veggies() {

@@ -8,10 +8,10 @@ export default defineConfig({
     alias: {
         "@src": "/src",
         "@libs": "/src/libs",
+        "@msw": "/src/msw",
         "@hooks": "/src/hooks",
         "@states": "/src/states",
         "@assets": "/src/assets",
-        "@mocks": "/src/mocks",
         "@layouts": "/src/layouts",
         "@features": "/src/assets/features",
         "@sections": "/src/layouts/sections",

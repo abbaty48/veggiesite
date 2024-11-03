@@ -625,8 +625,8 @@ const veggies: TVeggies = [
     }
 ]
 
-function shuffleArray(arr: TVeggie[]) {
-    return arr.reduce((acc: TVeggie[], item: TVeggie) => {
+function shuffleArray(arr: any[]) {
+    return arr.reduce((acc: any[], item: TVeggie) => {
         const randomIndex = Math.floor(Math.random() * (arr.length + 1))
         return [...acc.slice(0, randomIndex), item, ...acc.slice(randomIndex)];
     }, [])
@@ -635,8 +635,8 @@ function shuffleArray(arr: TVeggie[]) {
 const wait = (delay: number = 1000) => new Promise(resolve => setTimeout(resolve, delay))
 
 export const handlers = [
-    http.get('/categories', async () => HttpResponse.json(veggies.map(v => v.category))),
-    http.get('/specials', async() => {
+    http.get('/categories', async () => HttpResponse.json(shuffleArray(veggies.map(v => v.category)))),
+    http.get('/specials', async () => {
         const _flat = veggies.map(v => v.veggies).flat();
         const _veggies = shuffleArray(_flat).slice(0, 6);
         await wait();
@@ -647,6 +647,6 @@ export const handlers = [
         const __veggies = shuffleArray(_veggies);
         await wait();
         return HttpResponse.json(__veggies);
-        }
+    }
     ),
 ]

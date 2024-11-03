@@ -5,17 +5,23 @@ import { useMenu } from "@hooks/useMenu"
 import { useVeggies } from "@hooks/useData"
 import { Spinner } from "@components/spinner"
 
-const Wrapper = styled.article`
+const Container = styled.article`
     gap: 1em;
     display: grid;
-    margin: 2rem 0;
+    text-align: left;
     @media screen and (min-width: 60em){
         grid-template-columns: repeat(2, 1fr);
     }
+    `
+const Wrapper = styled.article`
+    margin: 2rem 0;
+    text-align: center;
 `
 const DefinitionList = styled.dl`
     margin: .6rem 0;
     border-bottom: 1px solid #eee;
+    transition: all .3s ease-in;
+    &:hover {background: #f9f9f9; padding: 1rem 1.5rem; scale: 0.9; cursor: pointer; border-radius: .5rem;}
     @media screen and (min-width: 60em){
         border-bottom: none;
     }
@@ -38,22 +44,24 @@ const DefinitionData = styled.dd`
 `
 
 const Veggies = memo(function ({ items }: { items: TVeggie[] }) {
-    return items.map(({ name, price, ingredients, title, imageUrl }, index) => <DefinitionList key={index}>
-        <DefinitionTable>{name} <span>{price}$</span> </DefinitionTable>
-        <DefinitionData>{ingredients.join(',')}</DefinitionData>
-    </DefinitionList>
+    return items.map(({ name, price, ingredients, title, imageUrl }, index) => (
+        <DefinitionList key={index} title={title}>
+            <DefinitionTable>{name} <span>{price}$</span> </DefinitionTable>
+            <DefinitionData>{ingredients.join(',')}</DefinitionData>
+        </DefinitionList>)
     )
 })
 
 export default function MenuContent() {
     const { selectMenu } = useMenu()
-    const { isLoading, isError, data } = useVeggies(selectMenu)
+    const { isLoading, data } = useVeggies(selectMenu)
     return (
-        <>
-            {isLoading && <Spinner />}
-            {isError && 'Could not load data at the moment.'}
-            {data && !data.length && `No available data for '${selectMenu}' yet.`}
-            {data && data.length && <Wrapper><Veggies items={data} /></Wrapper>}
-        </>
+        <Wrapper>
+            {
+                isLoading ? <Spinner /> :
+                        data && !data.length ? <p>No available data for '${selectMenu}' yet.</p> :
+                            data && data.length ? <Container><Veggies items={data} /></Container> : null
+            }
+        </Wrapper>
     )
 }

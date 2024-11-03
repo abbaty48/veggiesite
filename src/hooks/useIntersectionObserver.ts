@@ -36,7 +36,7 @@ export function useIntersectionObserver(ref: TRef | TRef[], options?: TObserverI
                 if (observer && ref.current) { observer.unobserve(ref.current) }
             }
         }
-    }, [ref, options])
+    }, [ref])
 
     return isIntersected
 }

@@ -2,6 +2,7 @@ import { memo, PropsWithChildren, useCallback, useEffect, useMemo, useState } fr
 import { MenuContext } from "@states/context/menuContext"
 import MenuContent from "@sections/veggies/menuContent"
 import { MenuItem } from "@sections/veggies/menuItem"
+import TextLoading from "@components/textLoading"
 import { useCategory } from "@hooks/useCategory"
 import { useMenu } from '@hooks/useMenu'
 import styled from "styled-components"
@@ -30,19 +31,20 @@ const MenuHeader = memo(() => {
     const { setSelectedMenu } = useMenu()
 
     const MenuItems = useMemo(() => {
-        if (data && data.length) {
+        if (isLoading) return <TextLoading>Getting Veggies menu</TextLoading>
+        else if (isError) return 'Veggies menu not available yet.'
+        else if (data && data.length) {
             return data.map(cat => <Menu.MenuItem key={cat.toLowerCase()}>{cat}</Menu.MenuItem>)
+        } else {
+            return 'Menus not available at the moment.'
         }
-        return 'Categories not available at the moment.'
     }, [data])
 
     useEffect(() => {
-       data && data.length && setSelectedMenu(data[0]);
+        data && data.length && setSelectedMenu(data[0]);
     }, [data])
 
     return <Header>
-        {isLoading && 'Getting Veggies menu...'}
-        {isError && 'Cannot get menu.'}
         {MenuItems}
     </Header>
 })
